@@ -679,10 +679,10 @@ const test40 = function () {
     let expect = `.a{
     .b{
         color: blue;
-    }
-    .c{
-        color: red;
-    }
+        .c{
+            color: green;
+        }
+    }    color: red;
 }`
     ensureEqual(expect, result, 'test40')
 }
@@ -729,7 +729,7 @@ const test = function () {
     test37()
     test38()
     test39()
-    // test40()
+    test40()
 }
 
 const __main = function () {

@@ -156,6 +156,7 @@ class Transform {
     }
     visit_Block(node) {
         let l = []
+        this.scope.add()
         node.list.forEach(e => {
             let r = this.visit(e)
             if (Array.isArray(r)) {
@@ -164,6 +165,7 @@ class Transform {
                 l.push(r)
             }
         })
+        this.scope.pop()
         let result = BlockCss(l)
         return result
     }

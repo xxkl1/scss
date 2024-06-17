@@ -193,6 +193,7 @@ class Transform {
         }
         return block.list
     }
+    // TODO: 重构优化这个函数，太长了
     visit_SelectorExpression(node) {
         let result = []
         let head = this.visit(node.content)

@@ -74,6 +74,12 @@ class Lexer {
             throw 'lexer canSaveSpace error current_char is not space'
         }
         let next = this.peek()
+        /**
+         * TODO: 重构优化这里的判断
+         * !this.hasCharBefore('\n')是为了去除.a{\n%space.b {}}的空格
+         * this.hasCharWithSpaceBefore()是为了防止!this.hasCharBefore('\n')去掉.a { .b%space.c {}}这种空格
+         * !this.hasCharBefore(',')是为了去除群组选择器，a,%space.b{}这种空格
+         */
         let isSpaceChildSelector = next === '.' && (!this.hasCharBefore('\n') || this.hasCharWithSpaceBefore()) && !this.hasCharBefore(',')
         let isSpaceProperty = isChar(next) && this.hasCharWithSpaceBefore()
         return isSpaceChildSelector || isSpaceProperty
